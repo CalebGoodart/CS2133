@@ -1,10 +1,11 @@
 public class Factorial {
 
-    public static long calculate(long n){
-        if(!(n < 0 && n > 20)){
-            return n;
-        }else{
-            n=n*(n-1);
+    public static long calculate(long n) {
+        long factorial = 1;
+        if (n == 0 && !(n < 0)) {
+            return factorial;
+        } else {
+            n--;
             return Factorial.calculate(n);
         }
     }
@@ -17,5 +18,6 @@ public class Factorial {
         if(Factorial.calculate(5) == 120){
             System.out.println("Factorial.calculate(5) returned 120. Test Fail");
         }
+        System.out.print(Factorial.calculate(3));
     }
 }
