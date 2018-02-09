@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class FibTest {
 
@@ -15,10 +14,23 @@ public class FibTest {
     }
     public static int fibRecur(int n){
 
-        return n;
+        if ( n == 1){
+            return 1;
+        }else if (n == 2){
+            return 1;
+        }else{
+            return fibRecur(n - 1) + fibRecur( n - 2);
+        }
     }
 
     public static void main(String[] args){
-        System.out.println(fibIter(11));
+
+        long fibIter = System.currentTimeMillis();
+        System.out.println(fibIter(40));
+        System.out.println(System.currentTimeMillis() - fibIter);
+
+        long fibRecur = System.currentTimeMillis();
+        System.out.println(fibRecur(40));
+        System.out.println(System.currentTimeMillis() - fibRecur);
     }
 }
