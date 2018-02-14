@@ -6,7 +6,7 @@ public class FunctionTest {
 
         if ( Math.abs((a - x)) < epsilon){
             return x;
-        }else if ( ( Math.sin(x) < 0 && Math.sin(a) < 0 ) || ( Math.sin(x) > 0 && Math.sin(a) > 0) ){
+        }else if ( ( (x) < 0 && Math.sin(a) < 0 ) || ( Math.sin(x) > 0 && Math.sin(a) > 0) ){
             return findRoot(x, b, epsilon);
         }else {
             return findRoot(a, x, epsilon);

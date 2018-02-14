@@ -5,11 +5,11 @@ public class Ramanujan {
 
         double remOutput = 0;
 
-        for (int i = 1; i <= input; i++ ) {
+        for (int i = 0; i <= input; i++ ) {
             remOutput+=((Factorial.calculate(4*i) * (1103 + (26390 * i))) / (Math.pow( Factorial.calculate(i), 4) * Math.pow(396, (4 * i))));
             System.out.println(remOutput);
         }
-        return ( ((2 * Math.sqrt(2)) / Math.pow( 99, 2)) * remOutput);
+        return 1/( ((2 * Math.sqrt(2)) / Math.pow( 99, 2)) * remOutput);
     }
 
     public static void main(String[] args){

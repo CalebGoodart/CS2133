@@ -14,9 +14,12 @@ public abstract class Function{
             return findRoot(a, x, epsilon);
         }
     }
+
     public static void main(String[] args){
         int a = 1;
         double b =2;
+
+
 
 
     }
