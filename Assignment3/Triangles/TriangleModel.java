@@ -1,11 +1,11 @@
 public class TriangleModel {
 
     private double pixelX;
-    private double PixelY;
+    private double pixelY;
 
     public TriangleModel(){
         pixelX = 100;
-        pixelX = 100;
+        pixelY = 100;
     }
 
     public double getPixelX(){
@@ -13,7 +13,7 @@ public class TriangleModel {
     }
 
     public double getPixelY(){
-        return getPixelY();
+        return pixelY;
     }
 
 

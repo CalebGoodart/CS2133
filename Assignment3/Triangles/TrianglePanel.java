@@ -5,34 +5,39 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class TrianglePanel extends JPanel {
 
-    private Toolkit kit = getDefaultToolkit();
     private TriangleFrame frame;
-    public TrianglePanel(TriangleFrame tf){
-       frame = tf;
+    Toolkit kit;
+
+    public TrianglePanel(TriangleFrame pf) {
+        frame = pf;
+        kit = Toolkit.getDefaultToolkit();
     }
 
-    public void paintComponent(Graphics g){
-
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        TriangleModel model = frame.getModel();
 
-        draw(frame.getWidth(),frame.getHeight(),10,10,g);
+        if (frame.getWidth()<frame.getHeight()){
+            draw(0,0,frame.getWidth(),frame.getWidth(),g);
+        }else {
+            draw(0,0,frame.getHeight(),frame.getHeight(),g);
+        }
+
     }
 
-    public void draw(int x, int y, int w,int h, Graphics g){
-        g.fillRect(x,y,w,h);
-    }
-}
-    public void draw(int xTop, int yTop, int xBottem, int yBottem,  Graphics g){
-        if (x  <= 1){
-            g.drawRect( x, y, 1,1);
+    public void draw(int x, int y,int x0, int y0, Graphics g){
+        int x1 = x;
+        int y1 = y;
+        int x2 = x0;
+        int y2 = y0;
+
+        if (x2==1){
+           g.drawRect(x2,y2,10,10);
         }else{
 
-            System.out.println("test");
-
-            int centerX = x/2;
-            int centerY = y/2;
-
-            draw(centerX, centerY, g);
-            draw(centerX + 1,centerY, g);
-            draw(centerX ,centerY -1, g);
+            draw(x1,y1,x2/2,y2/2,g);
+            draw(x2/2,y2/2,x2,y2,g);
+            draw(x2/4,y1,(3 * x2)/4,y2/2,g);
         }
+    }
+}

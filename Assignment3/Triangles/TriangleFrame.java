@@ -7,10 +7,14 @@ public class TriangleFrame extends JFrame {
 
     public TriangleFrame() {
         setTitle("Sierpinski's Triangle");
-        setSize(500,500);
-        //setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+        setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        model = new TriangleModel();
         add(new TrianglePanel(this));
         setVisible(true);
+    }
+
+    public TriangleModel getModel() {
+        return model;
     }
 }
