@@ -6,21 +6,22 @@ public class Euler7 {
         ArrayList<Integer> primes = new ArrayList<>();
         primes.add(1);
         primes.add(2);
+        boolean test;
 
-        for (int i = 3; i <= 10001; i++){
-            for (int j = 1; j < primes.size(); j++){
+        for (int i = 3; primes.size() <= 10001; i++){
 
-                if (primes.get(j) % i != 0){
-                    primes.add(i);
-                    //System.out.println(primes.get(i));
+            System.out.println(i);
+            test =true;
+            for (int j = 1; (j < primes.size()) && test; j++){
+
+                if (i % primes.get(j) == 0){
+                    test = false;
                 }
-
+            }
+            if (test){
+                primes.add(i);
             }
         }
-
-        for (int i =0; i < primes.size(); i++){
-
-            System.out.println(primes.get(i));
-        }
+        System.out.println(primes.get(10001));
     }
 }
