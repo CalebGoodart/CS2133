@@ -8,5 +8,6 @@ public class MessageFrame extends JFrame{
         setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(new MessagePanel());
-        setVisible(true);}
+        setVisible(true);
+    }
 }

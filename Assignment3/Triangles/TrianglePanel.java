@@ -1,2 +1,5 @@
-public class TrianglePanel {
+import javax.swing.*;
+
+public class TrianglePanel extends JPanel {
+
 }
