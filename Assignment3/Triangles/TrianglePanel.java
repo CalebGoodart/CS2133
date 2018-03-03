@@ -11,33 +11,30 @@ public class TrianglePanel extends JPanel {
     public TrianglePanel(TriangleFrame pf) {
         frame = pf;
         kit = Toolkit.getDefaultToolkit();
+
+        System.out.println(frame.getWidth() + " " + frame.getHeight());
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        TriangleModel model = frame.getModel();
 
-        if (frame.getWidth()<frame.getHeight()){
-            draw(0,0,frame.getWidth(),frame.getWidth(),g);
-        }else {
-            draw(0,0,frame.getHeight(),frame.getHeight(),g);
-        }
+        //g.drawRect(1,200,200,200);
+            draw(0,0,frame.getWidth(),frame.getHeight(),g);
+
 
     }
 
     public void draw(int x, int y,int x0, int y0, Graphics g){
-        int x1 = x;
-        int y1 = y;
-        int x2 = x0;
-        int y2 = y0;
 
-        if (x2==1){
-           g.drawRect(x2,y2,10,10);
-        }else{
-
-            draw(x1,y1,x2/2,y2/2,g);
-            draw(x2/2,y2/2,x2,y2,g);
-            draw(x2/4,y1,(3 * x2)/4,y2/2,g);
+        if ((x0)==1){
+           g.fillRect(x0 - 1,y0-35,10,10);
+        }else if (x0 == 2){
+            g.fillRect(x0 + 9 ,y0-35,10,10);
+        }
+        else{
+            draw(x,y,x0/2,y0,g);
+            draw(x, y,x0 + 1,y0,g);
+            //draw(x/4,y,(3 * x)/4,y/2,g);
         }
     }
 }
