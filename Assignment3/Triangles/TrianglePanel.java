@@ -1,7 +1,7 @@
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import javax.swing.*;
 import java.awt.*;
-
-import static java.awt.Toolkit.getDefaultToolkit;
 
 public class TrianglePanel extends JPanel {
 
@@ -9,6 +9,7 @@ public class TrianglePanel extends JPanel {
     Toolkit kit;
 
     public TrianglePanel(TriangleFrame pf) {
+        setLayout(new GridLayout());
         frame = pf;
         kit = Toolkit.getDefaultToolkit();
 
@@ -18,23 +19,31 @@ public class TrianglePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        //g.drawRect(1,200,200,200);
-            draw(0,0,frame.getWidth(),frame.getHeight(),g);
+        int x = frame.getWidth();
+        int y = frame.getHeight();
+        //g.drawRect((int).5,399,10,10);
 
+        if (x<=y){
+            draw( x,x, x, x, x, 0,  g);
+        }else {
+            draw( y,x, y, y, y, 0,  g);
+        }
+        System.out.println(frame.getWidth() + " " + frame.getHeight());
 
     }
 
-    public void draw(int x, int y,int x0, int y0, Graphics g){
+    public void draw(int r, int x0, int x1, int y0, int y1, int y2, Graphics g){
 
-        if ((x0)==1){
-           g.fillRect(x0 - 1,y0-35,10,10);
-        }else if (x0 == 2){
-            g.fillRect(x0 + 9 ,y0-35,10,10);
-        }
-        else{
-            draw(x,y,x0/2,y0,g);
-            draw(x, y,x0 + 1,y0,g);
-            //draw(x/4,y,(3 * x)/4,y/2,g);
+        System.out.printf("%d, %d, %d, %d || %d, %d  \n", x0, x1, y0, y1, r, y2);
+        if (x1 - x0/2 == 1) {
+            System.out.println("PRINT");
+            g.drawRect(x1, y1 - y0, 1, 1);
+        }else {
+            System.out.println("ONE");
+            draw(r, x0 / 2, x1 / 2, y0 / 2, y1, y2 + 1, g);
+            System.out.println("TWO");
+            draw(r,x1/2, x1, y0, y1, y2 - 1, g);
+            //draw( g);
         }
     }
 }
