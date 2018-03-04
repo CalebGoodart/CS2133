@@ -10,15 +10,11 @@ public class MinesweeperPanel extends JPanel {
     public MinesweeperPanel(MinesweeperFrame pf) {
         frame = pf;
         kit = Toolkit.getDefaultToolkit();
-        addMouseMotionListener(new MouseHandler());
-        Timer timer = new Timer(100, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-                repaint();
-                kit.sync();
-            }
-        });
-        timer.start();
+        setLayout(new GridLayout());
+
+        addMouseMotionListener(new MouseHandler());
+
     }
 
     public void paintComponent(Graphics g) {
@@ -28,6 +24,7 @@ public class MinesweeperPanel extends JPanel {
 
     private class MouseHandler extends MouseMotionAdapter {
 
+        
     }
 
 }
