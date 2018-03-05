@@ -6,7 +6,7 @@ public class MinesweeperFrame extends JFrame {
 
         public MinesweeperFrame() {
             setTitle("Minesweeper");
-            setSize(1000, 1000);
+            setSize(512, 512);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             model = new MinesweeperModel();
             add(new MinesweeperPanel(this));
