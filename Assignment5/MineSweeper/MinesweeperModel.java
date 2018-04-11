@@ -1,69 +1,39 @@
+import java.io.*;
 import java.util.*;
 
 public class MinesweeperModel {
 
-    private String[][] fieldCords;
     private String[][] mineField;
     private String[][] fullField;
     private String[][] display;
-
     private String[] mineLocation;
+    private int difficalty;
 
-    public MinesweeperModel() {
+    public MinesweeperModel(int n) {
 
-        fieldCords = new String[10][10];
-        setFieldCords(fieldCords);
-        mineLocation = new String[10];
+        difficalty = n;
+        mineLocation = new String[n];
         setMineLocation();
-        mineField = new String[10][10];
+        mineField = new String[n][n];
         setMineField(mineField);
-        fullField = new String[10][10];
+        fullField = new String[n][n];
         setFullField(fullField);
-        display = new String[10][10];
+        display = new String[n][n];
         setDisplay(display);
     }
 
-    private void setFieldCords(String[][] fieldCords){
+    public MinesweeperModel(int n, String[][] disp, String[][] field){
 
-        for (int r = 0; r < fieldCords.length; r++){
-            for (int c = 0; c < fieldCords.length; c++){
+        difficalty = n;
+        display = disp;
+        fullField = field;
+    }
 
-                if (fieldCords[r] == fieldCords[0]){
-                    fieldCords[r][c] = "A" + c;
-                }
-                if (fieldCords[r] == fieldCords[1]){
-                    fieldCords[r][c] = "B" + c;
-                }
-                if (fieldCords[r] == fieldCords[2]){
-                    fieldCords[r][c] = "C" + c;
-                }
-                if (fieldCords[r] == fieldCords[3]){
-                    fieldCords[r][c] = "D" + c;
-                }
-                if (fieldCords[r] == fieldCords[4]){
-                    fieldCords[r][c] = "E" + c;
-                }
-                if (fieldCords[r] == fieldCords[5]){
-                    fieldCords[r][c] = "F" + c;
-                }
-                if (fieldCords[r] == fieldCords[6]){
-                    fieldCords[r][c] = "G" + c;
-                }
-                if (fieldCords[r] == fieldCords[7]){
-                    fieldCords[r][c] = "H" + c;
-                }
-                if (fieldCords[r] == fieldCords[8]){
-                    fieldCords[r][c] = "I" + c;
-                }
-                if (fieldCords[r] == fieldCords[9]){
-                    fieldCords[r][c] = "J" + c;
-                }
-            }
-        }
+    public void setDifficalty(int diff){
+        difficalty = diff;
     }
 
     private void setMineField(String[][] mineField){
-
 
         int count = 0;
         for (int r = 0; r < mineField.length; r++){
@@ -73,8 +43,6 @@ public class MinesweeperModel {
                 count++;
             }
         }
-
-
 
         for (int r = 0; r < mineField.length; r++){
             for (int c = 0; c < mineField.length; c++){
@@ -91,20 +59,13 @@ public class MinesweeperModel {
 
         for (int i = 0; i < mineLocation.length; i++){
 
-            String rn = Integer.toString((int)(100 * new Random().nextDouble()));
+            String rn = Integer.toString((int)((difficalty * difficalty) * new Random().nextDouble()));
 
                 mineLocation[i] = rn;
         }
-
-        for (int i = 0; i < mineLocation.length; i++){
-            for (int j = 0; j < mineLocation.length; j++){
-
-
-            }
-        }
     }
 
-    private void setFullField(String[][] fullField){
+    public void setFullField(String[][] fullField){
 
         for (int r = 0; r < fullField.length; r++){
             for (int c = 0; c < fullField.length; c++){
@@ -114,7 +75,7 @@ public class MinesweeperModel {
         }
     }
 
-    private void setDisplay(String[][] display){
+    public void setDisplay(String[][] display){
 
         for (int r = 0; r < display.length; r++){
             for (int c = 0; c < display.length; c++){
@@ -124,14 +85,79 @@ public class MinesweeperModel {
         }
     }
 
+    public void saveGame(File file, String[][] disp, String[][] field, int diff){
 
-    public String[][] getFieldCords(){
-        return fieldCords;
+        try {
+
+            FileWriter fileWriter = new FileWriter(file);
+
+
+            for (int r = 0; r < disp.length; r++) {
+                for (int c = 0; c < disp.length; c++) {
+                    fileWriter.write(disp[r][c]);
+                }
+            }
+            fileWriter.write("\n");
+
+            for (int r = 0; r < field.length; r++) {
+                for (int c = 0; c < field.length; c++) {
+                    fileWriter.write(field[r][c]);
+                }
+            }
+            fileWriter.write("\n");
+            fileWriter.write(diff);
+            fileWriter.flush();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public String[][] getMineField(){
-        return mineField;
-    }
+    public int loadGame(File file){
+
+        int diff = 0;
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                String line = reader.readLine();
+                String lineTwo = reader.readLine();
+                diff = reader.read();
+/*
+                setDifficalty(diff);
+
+                int count = 0;
+                for (int r = 0; r < display.length; r++){
+                    for (int c = 0; c < display.length; c++){
+
+                        display[r][c] = Character.toString(line.charAt(count));
+                        count++;
+                    }
+                }
+
+                count = 0;
+                for (int r = 0; r < fullField.length; r++){
+                    for (int c = 0; c < fullField.length; c++){
+
+                        fullField[r][c] = Character.toString(lineTwo.charAt(count));
+                        count++;
+                    }
+                }
+
+                for (int r = 0; r < display.length; r++){
+                    for (int c = 0; c < display.length; c++){
+
+                        System.out.print(display[r][c]);
+                    }
+                    System.out.println();
+                }
+*/
+                return diff;
+
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+
+            return diff;
+        }
 
     public String[][] getFullField() {
         return fullField;
@@ -139,6 +165,10 @@ public class MinesweeperModel {
 
     public String[][] getDisplay(){
         return display;
+    }
+
+    public int getDifficalty(){
+        return difficalty;
     }
 
     public String detect(int r, int c, String s){
@@ -285,83 +315,6 @@ public class MinesweeperModel {
                     }
             }
             return Integer.toString(mineCount);
-        }
-
-    }
-
-    public static void main(String[] args){
-        MinesweeperModel model = new MinesweeperModel();
-
-        String[][] fieldCords = model.getFieldCords();
-        String[][] mineField = model.getMineField();
-        String[][] fullField = model.getFullField();
-        String[][] display = model.getDisplay();
-
-        for (int r = 0; r < fieldCords.length; r++){
-            for (int c = 0; c < fieldCords.length; c++){
-                    System.out.print(fieldCords[r][c]);
-            }
-            System.out.println();
-        }
-
-        System.out.println();
-
-        for (int r = 0; r < mineField.length; r++){
-            for (int c = 0; c < mineField.length; c++){
-
-                System.out.print(mineField[r][c]);
-            }
-            System.out.println();
-        }
-
-        System.out.println();
-
-        for (int r = 0; r < fullField.length; r++){
-            for (int c = 0; c < fullField.length; c++){
-
-                System.out.print(fullField[r][c]);
-            }
-            System.out.println();
-        }
-
-        System.out.println();
-
-        for (int r = 0; r < display.length; r++){
-            for (int c = 0; c < display.length; c++){
-
-                System.out.print(display[r][c]);
-            }
-            System.out.println();
-        }
-
-        Boolean run = true;
-        while (run){
-
-            Scanner scan = new Scanner(System.in);
-
-            for (int r = 0; r < display.length; r++){
-                for (int c = 0; c < display.length; c++){
-
-                    System.out.print(display[r][c]);
-                }
-                System.out.println();
-            }
-
-            String input = scan.next();
-
-            for (int r = 0; r < fullField.length; r++){
-                for (int c = 0; c < fullField.length; c++){
-
-                    if (input.equals(fieldCords[r][c])){
-                        if (fullField[r][c].equals("M")){
-                            run = false;
-                        }else {
-                            display[r][c] = fullField[r][c];
-                        }
-                    }
-                }
-                System.out.println();
-            }
         }
     }
 }
