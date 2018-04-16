@@ -60,7 +60,6 @@ public class Sorting {
             split(array, m + 1, r, start);
 
             if ((System.currentTimeMillis() - start) > 20000){
-                System.out.println("Merge Sort ran out of time!");
                 return true;
             }
 
@@ -75,7 +74,6 @@ public class Sorting {
     public static boolean merge(double[] array, int l, int m, int r, long start){
 
         if ((System.currentTimeMillis() - start) > 20000){
-            System.out.println("Merge Sort ran out of time!");
             return true;
         }
 
@@ -138,9 +136,8 @@ public class Sorting {
                 if (test1 && test2){
 
                     System.out.println("Both sorts have failed!");
+                    break;
                 }
-
-
             }
         }catch (OutOfMemoryError e){
             System.out.println("Ran out of memory!");
