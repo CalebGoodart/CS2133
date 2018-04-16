@@ -41,6 +41,7 @@ public class Caesar {
 
                 writeout.write(Cipher(letter, key));
             }
+
             writeout.close();
 
         }catch (Exception e){
